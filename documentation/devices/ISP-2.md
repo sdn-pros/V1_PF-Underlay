@@ -43,7 +43,7 @@ spanning-tree mode mstp
 | Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
 | --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
 | Ethernet1 | - | routed | - | 192.26.53.1/24 | default | 1500 | False | - | - |
-| Ethernet2 | - | routed | - | 192.26.54.1/24 | default | 1500 | True | - | - |
+| Ethernet2 | - | routed | - | 192.26.54.1/24 | default | 1500 | False | - | - |
 | Ethernet3 | - | routed | - | 192.26.76.1/24 | default | 1500 | True | - | - |
 | Ethernet4 | - | routed | - | 192.26.77.1/24 | default | 1500 | True | - | - |
 | Ethernet5 | - | routed | - | 192.21.26.2/24 | default | 1500 | False | - | - |
@@ -63,7 +63,7 @@ interface Ethernet1
    ip address 192.26.53.1/24
 !
 interface Ethernet2
-   shutdown
+   no shutdown
    mtu 1500
    no switchport
    ip address 192.26.54.1/24
@@ -162,7 +162,7 @@ ASN Notation: asplain
 
 | BGP AS | Router ID |
 | ------ | --------- |
-| 65202 | 192.168.0.26 |
+| 65203 | 192.168.0.26 |
 
 #### BGP Neighbors
 
@@ -172,21 +172,21 @@ ASN Notation: asplain
 | 192.21.26.1 | 65220 | default | - | - | - | - | - | - | - | - | - |
 | 192.22.26.1 | 65222 | default | - | - | - | - | - | - | - | - | - |
 | 192.23.26.1 | 65223 | default | - | - | - | - | - | - | - | - | - |
-| 192.26.53.1 | 65201 | default | - | - | - | - | - | - | - | - | - |
-| 192.26.54.1 | 65201 | default | - | - | - | - | - | - | - | - | - |
+| 192.26.53.2 | 65201 | default | - | - | - | - | - | - | - | - | - |
+| 192.26.54.2 | 65201 | default | - | - | - | - | - | - | - | - | - |
 
 #### Router BGP Device Configuration
 
 ```eos
 !
-router bgp 65202
+router bgp 65203
    router-id 192.168.0.26
    neighbor 192.20.26.1 remote-as 65201
    neighbor 192.21.26.1 remote-as 65220
    neighbor 192.22.26.1 remote-as 65222
    neighbor 192.23.26.1 remote-as 65223
-   neighbor 192.26.53.1 remote-as 65201
-   neighbor 192.26.54.1 remote-as 65201
+   neighbor 192.26.53.2 remote-as 65201
+   neighbor 192.26.54.2 remote-as 65201
    !
    address-family ipv4
       network 192.168.0.26/32

@@ -44,7 +44,7 @@ spanning-tree mode mstp
 | --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
 | Ethernet1 | - | routed | - | 192.51.75.2/24 | default | 1500 | False | - | - |
 | Ethernet2 | - | routed | - | 192.52.75.2/24 | default | 1500 | False | - | - |
-| Ethernet3 | - | routed | - | 192.54.75.2/24 | default | 1500 | False | - | - |
+| Ethernet3 | - | routed | - | 192.54.75.2/24 | default | 1500 | True | - | - |
 | Ethernet4 | - | routed | - | 192.53.75.2/24 | default | 1500 | False | - | - |
 
 #### Ethernet Interfaces Device Configuration
@@ -64,7 +64,7 @@ interface Ethernet2
    ip address 192.52.75.2/24
 !
 interface Ethernet3
-   no shutdown
+   shutdown
    mtu 1500
    no switchport
    ip address 192.54.75.2/24
@@ -137,7 +137,7 @@ ASN Notation: asplain
 
 | BGP AS | Router ID |
 | ------ | --------- |
-| 65002 | 192.168.0.75 |
+| 65003 | 192.168.0.75 |
 
 #### Router BGP Peer Groups
 
@@ -172,7 +172,7 @@ ASN Notation: asplain
 
 ```eos
 !
-router bgp 65002
+router bgp 65003
    router-id 192.168.0.75
    neighbor REGION1 peer group
    neighbor REGION1 remote-as 65101

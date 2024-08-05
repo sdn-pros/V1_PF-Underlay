@@ -41,7 +41,7 @@ ethernet_interfaces:
   type: routed
   shutdown: true
   mtu: 1500
-  ip_address: 192.21.33.1/24
+  ip_address: 192.21.34.1/24
 router_bgp:
   as: 65220
   router_id: 192.168.0.21

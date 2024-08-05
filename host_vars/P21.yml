@@ -1,4 +1,4 @@
-hostname: P2
+hostname: P21
 ip_routing: true
 spanning_tree:
   mode: mstp
@@ -15,17 +15,17 @@ ethernet_interfaces:
   mtu: 1500
   ip_address: 192.53.54.2/24
 - name: Ethernet2
-  peer: R2-PE2
-  type: routed
-  shutdown: false
-  mtu: 1500
-  ip_address: 192.26.54.2/24
-- name: Ethernet3
   peer: ISP-2
   type: routed
   shutdown: false
   mtu: 1500
   ip_address: 192.26.54.2/24
+- name: Ethernet3
+  peer: R2-PE2
+  type: routed
+  shutdown: false
+  mtu: 1500
+  ip_address: 192.25.54.2/24
 - name: Ethernet4
   peer: PE3
   type: routed

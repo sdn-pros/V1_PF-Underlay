@@ -49,15 +49,15 @@ ethernet_interfaces:
   type: routed
   shutdown: false
   mtu: 1500
-  ip_address: 172.14.51.2/24
+  ip_address: 192.14.51.2/24
 router_bgp:
   as: 65101
   router_id: 192.168.0.51
   peer_groups:
     - name: CORE
-      remote_as: 65101
+      remote_as: 65001
     - name: ISP-3
-      remote_as: 65002
+      remote_as: 65003
   neighbors:
     - ip_address: 192.51.81.2
       peer_group: CORE

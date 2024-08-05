@@ -36,9 +36,7 @@ router_bgp:
   router_id: 192.168.0.32
   neighbors:
     - ip_address: 192.12.32.1
-      remote_as:  65220
-    - ip_address: 192.11.32.1
-      remote_as:  65220
+      remote_as:  65112
   address_family_ipv4:
     networks: 
       - prefix: 192.168.0.32/32

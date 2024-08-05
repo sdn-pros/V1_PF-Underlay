@@ -17,7 +17,7 @@ ethernet_interfaces:
 - name: Ethernet2
   peer: P11
   type: routed
-  shutdown: true
+  shutdown: false
   mtu: 1500
   ip_address: 192.15.52.1/24
 - name: Ethernet3
@@ -78,8 +78,6 @@ router_bgp:
       remote_as:  65101
     - ip_address: 192.15.52.2
       remote_as:  65101
-    - ip_address: 192.14.15.1
-      remote_as:  65114
   address_family_ipv4:
     networks: 
       - prefix: 192.168.0.15/32

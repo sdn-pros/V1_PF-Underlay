@@ -46,43 +46,43 @@ spanning-tree mode mstp
 
 | Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
 | --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
-| Ethernet1 | - | routed | - | 172.16.14.254/24 | VRF_A | 1500 | True | - | - |
-| Ethernet2 | - | routed | - | 192.14.15.1/24 | default | 1500 | True | - | - |
-| Ethernet3 | - | routed | - | 192.14.16.1/24 | default | 1500 | True | - | - |
-| Ethernet4 | - | routed | - | 192.14.51.1/24 | default | 1500 | True | - | - |
-| Ethernet5 | - | routed | - | 192.14.52.1/24 | default | 1500 | True | - | - |
+| Ethernet1 | - | routed | - | 172.16.14.254/24 | VRF_A | 1500 | False | - | - |
+| Ethernet2 | - | routed | - | 192.14.15.1/24 | default | 1500 | False | - | - |
+| Ethernet3 | - | routed | - | 192.14.16.1/24 | default | 1500 | False | - | - |
+| Ethernet4 | - | routed | - | 192.14.51.1/24 | default | 1500 | False | - | - |
+| Ethernet5 | - | routed | - | 192.14.52.1/24 | default | 1500 | False | - | - |
 
 #### Ethernet Interfaces Device Configuration
 
 ```eos
 !
 interface Ethernet1
-   shutdown
+   no shutdown
    mtu 1500
    no switchport
    vrf VRF_A
    ip address 172.16.14.254/24
 !
 interface Ethernet2
-   shutdown
+   no shutdown
    mtu 1500
    no switchport
    ip address 192.14.15.1/24
 !
 interface Ethernet3
-   shutdown
+   no shutdown
    mtu 1500
    no switchport
    ip address 192.14.16.1/24
 !
 interface Ethernet4
-   shutdown
+   no shutdown
    mtu 1500
    no switchport
    ip address 192.14.51.1/24
 !
 interface Ethernet5
-   shutdown
+   no shutdown
    mtu 1500
    no switchport
    ip address 192.14.52.1/24

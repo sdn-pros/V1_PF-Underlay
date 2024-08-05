@@ -46,8 +46,8 @@ spanning-tree mode mstp
 
 | Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
 | --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
-| Ethernet1 | - | routed | - | 172.16.13.254/24 | VRF_A | 1500 | True | - | - |
-| Ethernet2 | - | routed | - | 192.13.15.1/24 | default | 1500 | True | - | - |
+| Ethernet1 | - | routed | - | 172.16.13.254/24 | VRF_A | 1500 | False | - | - |
+| Ethernet2 | - | routed | - | 192.13.15.1/24 | default | 1500 | False | - | - |
 | Ethernet3 | - | routed | - | 192.13.16.1/24 | default | 1500 | False | - | - |
 
 #### Ethernet Interfaces Device Configuration
@@ -55,14 +55,14 @@ spanning-tree mode mstp
 ```eos
 !
 interface Ethernet1
-   shutdown
+   no shutdown
    mtu 1500
    no switchport
    vrf VRF_A
    ip address 172.16.13.254/24
 !
 interface Ethernet2
-   shutdown
+   no shutdown
    mtu 1500
    no switchport
    ip address 192.13.15.1/24

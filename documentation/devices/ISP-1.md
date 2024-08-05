@@ -43,8 +43,8 @@ spanning-tree mode mstp
 | Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
 | --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
 | Ethernet1 | - | routed | - | 192.16.51.1/24 | default | 1500 | False | - | - |
-| Ethernet2 | - | routed | - | 192.16.52.1/24 | default | 1500 | True | - | - |
-| Ethernet3 | - | routed | - | 192.16.71.1/24 | default | 1500 | True | - | - |
+| Ethernet2 | - | routed | - | 192.16.52.1/24 | default | 1500 | False | - | - |
+| Ethernet3 | - | routed | - | 192.16.71.1/24 | default | 1500 | False | - | - |
 | Ethernet4 | - | routed | - | 192.16.72.1/24 | default | 1500 | True | - | - |
 | Ethernet5 | - | routed | - | 192.10.16.2/24 | default | 1500 | False | - | - |
 | Ethernet6 | - | routed | - | 192.11.16.2/24 | default | 1500 | False | - | - |
@@ -63,13 +63,13 @@ interface Ethernet1
    ip address 192.16.51.1/24
 !
 interface Ethernet2
-   shutdown
+   no shutdown
    mtu 1500
    no switchport
    ip address 192.16.52.1/24
 !
 interface Ethernet3
-   shutdown
+   no shutdown
    mtu 1500
    no switchport
    ip address 192.16.71.1/24
@@ -162,7 +162,7 @@ ASN Notation: asplain
 
 | BGP AS | Router ID |
 | ------ | --------- |
-| 65202 | 192.168.0.16 |
+| 65103 | 192.168.0.16 |
 
 #### BGP Neighbors
 
@@ -172,21 +172,21 @@ ASN Notation: asplain
 | 192.11.16.1 | 65110 | default | - | - | - | - | - | - | - | - | - |
 | 192.12.16.1 | 65112 | default | - | - | - | - | - | - | - | - | - |
 | 192.13.16.1 | 65113 | default | - | - | - | - | - | - | - | - | - |
-| 192.16.51.1 | 65102 | default | - | - | - | - | - | - | - | - | - |
-| 192.16.52.1 | 65103 | default | - | - | - | - | - | - | - | - | - |
+| 192.16.51.2 | 65101 | default | - | - | - | - | - | - | - | - | - |
+| 192.16.52.2 | 65101 | default | - | - | - | - | - | - | - | - | - |
 
 #### Router BGP Device Configuration
 
 ```eos
 !
-router bgp 65202
+router bgp 65103
    router-id 192.168.0.16
    neighbor 192.10.16.1 remote-as 65110
    neighbor 192.11.16.1 remote-as 65110
    neighbor 192.12.16.1 remote-as 65112
    neighbor 192.13.16.1 remote-as 65113
-   neighbor 192.16.51.1 remote-as 65102
-   neighbor 192.16.52.1 remote-as 65103
+   neighbor 192.16.51.2 remote-as 65101
+   neighbor 192.16.52.2 remote-as 65101
    !
    address-family ipv4
       network 192.168.0.16/32
