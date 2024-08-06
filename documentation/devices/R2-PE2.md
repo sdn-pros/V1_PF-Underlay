@@ -43,9 +43,9 @@ spanning-tree mode mstp
 | Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
 | --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
 | Ethernet1 | - | routed | - | 192.25.53.1/24 | default | 1500 | False | - | - |
-| Ethernet2 | - | routed | - | 192.25.54.1/24 | default | 1500 | True | - | - |
-| Ethernet3 | - | routed | - | 192.25.76.1/24 | default | 1500 | True | - | - |
-| Ethernet4 | - | routed | - | 192.25.77.1/24 | default | 1500 | True | - | - |
+| Ethernet2 | - | routed | - | 192.25.54.1/24 | default | 1500 | False | - | - |
+| Ethernet3 | - | routed | - | 192.25.76.1/24 | default | 1500 | False | - | - |
+| Ethernet4 | - | routed | - | 192.25.77.1/24 | default | 1500 | False | - | - |
 | Ethernet5 | - | routed | - | 192.20.25.2/24 | default | 1500 | False | - | - |
 | Ethernet6 | - | routed | - | 192.21.25.2/24 | default | 1500 | False | - | - |
 | Ethernet7 | - | routed | - | 192.22.25.2/24 | default | 1500 | False | - | - |
@@ -63,19 +63,19 @@ interface Ethernet1
    ip address 192.25.53.1/24
 !
 interface Ethernet2
-   shutdown
+   no shutdown
    mtu 1500
    no switchport
    ip address 192.25.54.1/24
 !
 interface Ethernet3
-   shutdown
+   no shutdown
    mtu 1500
    no switchport
    ip address 192.25.76.1/24
 !
 interface Ethernet4
-   shutdown
+   no shutdown
    mtu 1500
    no switchport
    ip address 192.25.77.1/24
@@ -175,6 +175,8 @@ ASN Notation: asplain
 | 192.24.25.1 | 65224 | default | - | - | - | - | - | - | - | - | - |
 | 192.25.53.2 | 65201 | default | - | - | - | - | - | - | - | - | - |
 | 192.25.54.2 | 65201 | default | - | - | - | - | - | - | - | - | - |
+| 192.25.76.2 | 65003 | default | - | - | - | - | - | - | - | - | - |
+| 192.25.77.2 | 65003 | default | - | - | - | - | - | - | - | - | - |
 
 #### Router BGP Device Configuration
 
@@ -189,6 +191,8 @@ router bgp 65202
    neighbor 192.24.25.1 remote-as 65224
    neighbor 192.25.53.2 remote-as 65201
    neighbor 192.25.54.2 remote-as 65201
+   neighbor 192.25.76.2 remote-as 65003
+   neighbor 192.25.77.2 remote-as 65003
    !
    address-family ipv4
       network 192.168.0.25/32

@@ -68,9 +68,9 @@ router_bgp:
     - ip_address: 192.24.53.1
       remote_as:  65224
     - ip_address: 192.26.53.1
-      remote_as:  65202
-    - ip_address: 192.25.53.1
       remote_as:  65203
+    - ip_address: 192.25.53.1
+      remote_as:  65202
   address_family_ipv4:
     networks:
       - prefix: 192.168.0.53/32

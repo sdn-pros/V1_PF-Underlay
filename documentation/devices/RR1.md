@@ -42,28 +42,28 @@ spanning-tree mode mstp
 
 | Interface | Description | Type | Channel Group | IP Address | VRF |  MTU | Shutdown | ACL In | ACL Out |
 | --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
-| Ethernet1 | - | routed | - | 192.71.72.2/24 | default | 1500 | False | - | - |
-| Ethernet2 | - | routed | - | 192.15.71.2/24 | default | 1500 | True | - | - |
-| Ethernet3 | - | routed | - | 192.16.71.2/24 | default | 1500 | True | - | - |
+| Ethernet1 | - | routed | - | 192.71.72.2/24 | default | 1500 | True | - | - |
+| Ethernet2 | - | routed | - | 192.15.71.2/24 | default | 1500 | False | - | - |
+| Ethernet3 | - | routed | - | 192.16.71.2/24 | default | 1500 | False | - | - |
 
 #### Ethernet Interfaces Device Configuration
 
 ```eos
 !
 interface Ethernet1
-   no shutdown
+   shutdown
    mtu 1500
    no switchport
    ip address 192.71.72.2/24
 !
 interface Ethernet2
-   shutdown
+   no shutdown
    mtu 1500
    no switchport
    ip address 192.15.71.2/24
 !
 interface Ethernet3
-   shutdown
+   no shutdown
    mtu 1500
    no switchport
    ip address 192.16.71.2/24
@@ -120,7 +120,7 @@ ASN Notation: asplain
 
 | BGP AS | Router ID |
 | ------ | --------- |
-| 65101 | 192.168.0.71 |
+| 65000 | 192.168.0.71 |
 
 #### BGP Neighbors
 
@@ -133,7 +133,7 @@ ASN Notation: asplain
 
 ```eos
 !
-router bgp 65101
+router bgp 65000
    router-id 192.168.0.71
    neighbor 192.15.71.1 remote-as 65102
    neighbor 192.16.71.1 remote-as 65103

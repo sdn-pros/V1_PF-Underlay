@@ -23,13 +23,13 @@ ethernet_interfaces:
 - name: Ethernet3
   peer: RR3
   type: routed
-  shutdown: true
+  shutdown: false
   mtu: 1500
   ip_address: 192.26.76.1/24
 - name: Ethernet4
   peer: RR4
   type: routed
-  shutdown: true
+  shutdown: false
   mtu: 1500
   ip_address: 192.26.77.1/24
 - name: Ethernet5
@@ -37,13 +37,13 @@ ethernet_interfaces:
   type: routed
   shutdown: false
   mtu: 1500
-  ip_address: 192.21.26.2/24
+  ip_address: 192.20.26.2/24
 - name: Ethernet6
   peer: Edge21
   type: routed
   shutdown: false
   mtu: 1500
-  ip_address: 192.21.25.2/24
+  ip_address: 192.21.26.2/24
 - name: Ethernet7
   peer: Edge22
   type: routed
@@ -67,7 +67,7 @@ router_bgp:
   router_id: 192.168.0.26
   neighbors:
     - ip_address: 192.20.26.1
-      remote_as:  65201
+      remote_as:  65220
     - ip_address: 192.21.26.1
       remote_as:  65220
     - ip_address: 192.22.26.1
@@ -78,6 +78,10 @@ router_bgp:
       remote_as:  65201
     - ip_address: 192.26.54.2
       remote_as:  65201
+    - ip_address: 192.26.76.2
+      remote_as:  65003
+    - ip_address: 192.26.77.2
+      remote_as:  65003
   address_family_ipv4:
     networks: 
       - prefix: 192.168.0.26/32

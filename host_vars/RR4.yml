@@ -11,23 +11,23 @@ ethernet_interfaces:
 - name: Ethernet1
   peer: RR1
   type: routed
-  shutdown: false
+  shutdown: true
   mtu: 1500
   ip_address: 192.76.77.2/24
 - name: Ethernet2
   peer: R2-PE2
   type: routed
-  shutdown: true
+  shutdown: false
   mtu: 1500
   ip_address: 192.25.77.2/24
 - name: Ethernet3
-  peer: ISP-1
+  peer: ISP-2
   type: routed
-  shutdown: true
+  shutdown: false
   mtu: 1500
   ip_address: 192.26.77.2/24
 router_bgp:
-  as: 65201
+  as: 65003
   router_id: 192.168.0.77
   neighbors:
     - ip_address: 192.25.77.1

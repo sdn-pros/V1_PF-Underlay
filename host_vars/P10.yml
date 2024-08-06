@@ -57,7 +57,7 @@ router_bgp:
     - name: CORE
       remote_as: 65001
     - name: ISP-3
-      remote_as: 65003
+      remote_as: 65002
   neighbors:
     - ip_address: 192.51.81.2
       peer_group: CORE

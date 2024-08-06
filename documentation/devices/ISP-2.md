@@ -44,10 +44,10 @@ spanning-tree mode mstp
 | --------- | ----------- | -----| ------------- | ---------- | ----| ---- | -------- | ------ | ------- |
 | Ethernet1 | - | routed | - | 192.26.53.1/24 | default | 1500 | False | - | - |
 | Ethernet2 | - | routed | - | 192.26.54.1/24 | default | 1500 | False | - | - |
-| Ethernet3 | - | routed | - | 192.26.76.1/24 | default | 1500 | True | - | - |
-| Ethernet4 | - | routed | - | 192.26.77.1/24 | default | 1500 | True | - | - |
-| Ethernet5 | - | routed | - | 192.21.26.2/24 | default | 1500 | False | - | - |
-| Ethernet6 | - | routed | - | 192.21.25.2/24 | default | 1500 | False | - | - |
+| Ethernet3 | - | routed | - | 192.26.76.1/24 | default | 1500 | False | - | - |
+| Ethernet4 | - | routed | - | 192.26.77.1/24 | default | 1500 | False | - | - |
+| Ethernet5 | - | routed | - | 192.20.26.2/24 | default | 1500 | False | - | - |
+| Ethernet6 | - | routed | - | 192.21.26.2/24 | default | 1500 | False | - | - |
 | Ethernet7 | - | routed | - | 192.22.26.2/24 | default | 1500 | False | - | - |
 | Ethernet8 | - | routed | - | 192.23.26.2/24 | default | 1500 | False | - | - |
 | Ethernet9 | - | routed | - | 192.24.26.2/24 | default | 1500 | True | - | - |
@@ -69,13 +69,13 @@ interface Ethernet2
    ip address 192.26.54.1/24
 !
 interface Ethernet3
-   shutdown
+   no shutdown
    mtu 1500
    no switchport
    ip address 192.26.76.1/24
 !
 interface Ethernet4
-   shutdown
+   no shutdown
    mtu 1500
    no switchport
    ip address 192.26.77.1/24
@@ -84,13 +84,13 @@ interface Ethernet5
    no shutdown
    mtu 1500
    no switchport
-   ip address 192.21.26.2/24
+   ip address 192.20.26.2/24
 !
 interface Ethernet6
    no shutdown
    mtu 1500
    no switchport
-   ip address 192.21.25.2/24
+   ip address 192.21.26.2/24
 !
 interface Ethernet7
    no shutdown
@@ -168,12 +168,14 @@ ASN Notation: asplain
 
 | Neighbor | Remote AS | VRF | Shutdown | Send-community | Maximum-routes | Allowas-in | BFD | RIB Pre-Policy Retain | Route-Reflector Client | Passive | TTL Max Hops |
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
-| 192.20.26.1 | 65201 | default | - | - | - | - | - | - | - | - | - |
+| 192.20.26.1 | 65220 | default | - | - | - | - | - | - | - | - | - |
 | 192.21.26.1 | 65220 | default | - | - | - | - | - | - | - | - | - |
 | 192.22.26.1 | 65222 | default | - | - | - | - | - | - | - | - | - |
 | 192.23.26.1 | 65223 | default | - | - | - | - | - | - | - | - | - |
 | 192.26.53.2 | 65201 | default | - | - | - | - | - | - | - | - | - |
 | 192.26.54.2 | 65201 | default | - | - | - | - | - | - | - | - | - |
+| 192.26.76.2 | 65003 | default | - | - | - | - | - | - | - | - | - |
+| 192.26.77.2 | 65003 | default | - | - | - | - | - | - | - | - | - |
 
 #### Router BGP Device Configuration
 
@@ -181,12 +183,14 @@ ASN Notation: asplain
 !
 router bgp 65203
    router-id 192.168.0.26
-   neighbor 192.20.26.1 remote-as 65201
+   neighbor 192.20.26.1 remote-as 65220
    neighbor 192.21.26.1 remote-as 65220
    neighbor 192.22.26.1 remote-as 65222
    neighbor 192.23.26.1 remote-as 65223
    neighbor 192.26.53.2 remote-as 65201
    neighbor 192.26.54.2 remote-as 65201
+   neighbor 192.26.76.2 remote-as 65003
+   neighbor 192.26.77.2 remote-as 65003
    !
    address-family ipv4
       network 192.168.0.26/32
