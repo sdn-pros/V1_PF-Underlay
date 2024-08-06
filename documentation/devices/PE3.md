@@ -484,7 +484,7 @@ router bgp 65001
    !
    router bgp 65001
      address-family ipv4
-       no neighbor Region1-UNDERLAY-PEERS activate
+       no neighbor Region2-UNDERLAY-PEERS activate
 
      vrf VRF_A
        neighbor Region2-UNDERLAY-PEERS peer group

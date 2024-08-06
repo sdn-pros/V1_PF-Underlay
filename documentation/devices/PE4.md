@@ -484,13 +484,13 @@ router bgp 65001
    !
    router bgp 65001
      address-family ipv4
-       no neighbor Region1-UNDERLAY-PEERS activate
+       no neighbor Region2-UNDERLAY-PEERS activate
 
      vrf VRF_A
        neighbor Region2-UNDERLAY-PEERS peer group
        neighbor Region2-UNDERLAY-PEERS remote-as 65201
-       neighbor 192.54.83.1 peer group Region2-UNDERLAY-PEERS
-       neighbor 192.54.83.1 description RR3-Underlay-Peer
+       neighbor 192.53.84.1 peer group Region2-UNDERLAY-PEERS
+       neighbor 192.53.84.1 description RR3-Underlay-Peer
        neighbor 192.54.84.1 peer group Region2-UNDERLAY-PEERS
        neighbor 192.54.84.1 description RR4-Underlay-Peer
      

@@ -64,7 +64,7 @@ router_bgp:
       remote_as: '65201'
     - ip_address: 192.54.83.1
       remote_as: '65201'
-  eos_cli: "router bgp 65001\n  address-family ipv4\n    no neighbor Region1-UNDERLAY-PEERS activate\n\n  vrf VRF_A\n    neighbor Region2-UNDERLAY-PEERS
+  eos_cli: "router bgp 65001\n  address-family ipv4\n    no neighbor Region2-UNDERLAY-PEERS activate\n\n  vrf VRF_A\n    neighbor Region2-UNDERLAY-PEERS
     peer group\n    neighbor Region2-UNDERLAY-PEERS remote-as 65201\n    neighbor 192.53.83.1 peer group Region2-UNDERLAY-PEERS\n    neighbor
     192.53.83.1 description RR3-Underlay-Peer\n    neighbor 192.54.83.1 peer group Region2-UNDERLAY-PEERS\n    neighbor 192.54.83.1
     description RR4-Underlay-Peer\n  \n    address-family ipv4\n      neighbor Region2-UNDERLAY-PEERS activate\n      network 192.168.101.23/32"
