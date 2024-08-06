@@ -78,8 +78,6 @@ router_bgp:
       remote_as:  65201
     - ip_address: 192.25.54.2
       remote_as:  65201
-    - ip_address: 192.24.25.1
-      remote_as:  65224
     - ip_address: 192.25.76.2
       remote_as:  65003
     - ip_address: 192.25.77.2

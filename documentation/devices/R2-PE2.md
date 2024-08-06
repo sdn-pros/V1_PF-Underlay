@@ -172,7 +172,6 @@ ASN Notation: asplain
 | 192.21.25.1 | 65220 | default | - | - | - | - | - | - | - | - | - |
 | 192.22.25.1 | 65222 | default | - | - | - | - | - | - | - | - | - |
 | 192.23.25.1 | 65223 | default | - | - | - | - | - | - | - | - | - |
-| 192.24.25.1 | 65224 | default | - | - | - | - | - | - | - | - | - |
 | 192.25.53.2 | 65201 | default | - | - | - | - | - | - | - | - | - |
 | 192.25.54.2 | 65201 | default | - | - | - | - | - | - | - | - | - |
 | 192.25.76.2 | 65003 | default | - | - | - | - | - | - | - | - | - |
@@ -188,7 +187,6 @@ router bgp 65202
    neighbor 192.21.25.1 remote-as 65220
    neighbor 192.22.25.1 remote-as 65222
    neighbor 192.23.25.1 remote-as 65223
-   neighbor 192.24.25.1 remote-as 65224
    neighbor 192.25.53.2 remote-as 65201
    neighbor 192.25.54.2 remote-as 65201
    neighbor 192.25.76.2 remote-as 65003
