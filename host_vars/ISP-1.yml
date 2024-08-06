@@ -29,7 +29,7 @@ ethernet_interfaces:
 - name: Ethernet4
   peer: RR2
   type: routed
-  shutdown: true
+  shutdown: false
   mtu: 1500
   ip_address: 192.16.72.1/24
 - name: Ethernet5
@@ -78,6 +78,10 @@ router_bgp:
       remote_as:  65101
     - ip_address: 192.16.52.2
       remote_as:  65101
+    - ip_address: 192.16.71.2
+      remote_as:  65000
+    - ip_address: 192.16.72.2
+      remote_as:  65000
   address_family_ipv4:
     networks: 
       - prefix: 192.168.0.16/32

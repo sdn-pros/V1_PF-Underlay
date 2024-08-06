@@ -45,7 +45,7 @@ spanning-tree mode mstp
 | Ethernet1 | - | routed | - | 192.16.51.1/24 | default | 1500 | False | - | - |
 | Ethernet2 | - | routed | - | 192.16.52.1/24 | default | 1500 | False | - | - |
 | Ethernet3 | - | routed | - | 192.16.71.1/24 | default | 1500 | False | - | - |
-| Ethernet4 | - | routed | - | 192.16.72.1/24 | default | 1500 | True | - | - |
+| Ethernet4 | - | routed | - | 192.16.72.1/24 | default | 1500 | False | - | - |
 | Ethernet5 | - | routed | - | 192.10.16.2/24 | default | 1500 | False | - | - |
 | Ethernet6 | - | routed | - | 192.11.16.2/24 | default | 1500 | False | - | - |
 | Ethernet7 | - | routed | - | 192.12.16.2/24 | default | 1500 | False | - | - |
@@ -75,7 +75,7 @@ interface Ethernet3
    ip address 192.16.71.1/24
 !
 interface Ethernet4
-   shutdown
+   no shutdown
    mtu 1500
    no switchport
    ip address 192.16.72.1/24
@@ -174,6 +174,8 @@ ASN Notation: asplain
 | 192.13.16.1 | 65113 | default | - | - | - | - | - | - | - | - | - |
 | 192.16.51.2 | 65101 | default | - | - | - | - | - | - | - | - | - |
 | 192.16.52.2 | 65101 | default | - | - | - | - | - | - | - | - | - |
+| 192.16.71.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
+| 192.16.72.2 | 65000 | default | - | - | - | - | - | - | - | - | - |
 
 #### Router BGP Device Configuration
 
@@ -187,6 +189,8 @@ router bgp 65103
    neighbor 192.13.16.1 remote-as 65113
    neighbor 192.16.51.2 remote-as 65101
    neighbor 192.16.52.2 remote-as 65101
+   neighbor 192.16.71.2 remote-as 65000
+   neighbor 192.16.72.2 remote-as 65000
    !
    address-family ipv4
       network 192.168.0.16/32
