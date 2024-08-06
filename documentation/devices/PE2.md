@@ -481,6 +481,22 @@ router bgp 65001
       address-family ipv4
          neighbor 192.51.82.1 activate
          neighbor 192.52.82.1 activate
+   !
+   router bgp 65001
+     address-family ipv4
+       no neighbor Region1-UNDERLAY-PEERS activate
+
+     vrf VRF_A
+       neighbor Region1-UNDERLAY-PEERS peer group
+       neighbor Region1-UNDERLAY-PEERS remote-as 65101
+       neighbor 192.51.81.1 peer group Region1-UNDERLAY-PEERS
+       neighbor 192.51.81.1 description RR1-Underlay-Peer
+       neighbor 192.52.81.1 peer group Region1-UNDERLAY-PEERS
+       neighbor 192.52.81.1 description RR2-Underlay-Peer
+     
+       address-family ipv4
+         neighbor Region1-UNDERLAY-PEERS activate
+         network 192.168.101.22/32
 ```
 
 ## BFD
