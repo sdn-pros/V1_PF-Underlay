@@ -9,33 +9,33 @@ loopback_interfaces:
 - name: Loopback0
   description: Leaf22_lo0
   shutdown: false
-  ip_address: 192.168.0.32/32
+  ip_address: 192.168.0.34/32
 ethernet_interfaces:
 - name: Ethernet1
   peer: H22
   type: routed
   shutdown: false
   mtu: 1500
-  ip_address: 172.16.12.254/24
+  ip_address: 172.16.22.254/24
   vrf: VRF_A
 - name: Ethernet2
-  peer: Edge20
+  peer: Edge22
   type: routed
   shutdown: false
   mtu: 1500
-  ip_address: 192.12.32.2/24
+  ip_address: 192.22.34.2/24
 - name: Ethernet3
   peer: Edge21
   type: routed
   shutdown: true
   mtu: 1500
-  ip_address: 192.21.32.2/24
+  ip_address: 192.21.34.2/24
 router_bgp:
   as: 65222
-  router_id: 192.168.0.32
+  router_id: 192.168.0.34
   neighbors:
-    - ip_address: 192.12.32.2
-      remote_as:  65112
+    - ip_address: 192.22.34.1
+      remote_as:  65222
   address_family_ipv4:
     networks: 
-      - prefix: 192.168.0.32/32
+      - prefix: 192.168.0.34/32

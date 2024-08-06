@@ -156,7 +156,6 @@ ASN Notation: asplain
 
 | Neighbor | Remote AS | VRF | Shutdown | Send-community | Maximum-routes | Allowas-in | BFD | RIB Pre-Policy Retain | Route-Reflector Client | Passive | TTL Max Hops |
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
-| 192.24.26.2 | 65203 | default | - | - | - | - | - | - | - | - | - |
 | 192.24.53.2 | 65201 | default | - | - | - | - | - | - | - | - | - |
 | 192.24.54.2 | 65201 | default | - | - | - | - | - | - | - | - | - |
 
@@ -166,7 +165,6 @@ ASN Notation: asplain
 !
 router bgp 65224
    router-id 192.168.0.24
-   neighbor 192.24.26.2 remote-as 65203
    neighbor 192.24.53.2 remote-as 65201
    neighbor 192.24.54.2 remote-as 65201
    !

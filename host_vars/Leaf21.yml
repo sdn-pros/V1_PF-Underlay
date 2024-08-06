@@ -42,8 +42,6 @@ router_bgp:
   neighbors:
     - ip_address: 192.20.33.1
       remote_as:  65220
-    - ip_address: 192.20.26.2
-      remote_as:  65220
     - ip_address: 192.21.33.1
       remote_as:  65220
   address_family_ipv4:
