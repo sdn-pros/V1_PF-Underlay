@@ -163,6 +163,7 @@ router bgp 65110
    !
    address-family ipv4
       network 192.168.0.31/32
+      redistribute connected
 ```
 
 ## VRF Instances

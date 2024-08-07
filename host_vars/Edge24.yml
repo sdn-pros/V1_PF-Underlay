@@ -54,3 +54,11 @@ router_bgp:
     networks: 
       - prefix: 192.168.0.24/32
       - prefix: 172.16.24.0/24
+    redistribute_routes:
+      - source_protocol: connected
+vxlan_interface:
+  Vxlan1:
+    description: VTEP_Interface
+    vxlan:
+      source_interface: Dps1
+      udp_port: 4789

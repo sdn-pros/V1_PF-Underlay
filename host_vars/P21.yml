@@ -75,3 +75,11 @@ router_bgp:
   address_family_ipv4:
     networks:
       - prefix: 192.168.0.54/32
+    redistribute_routes:
+      - source_protocol: connected
+vxlan_interface:
+  Vxlan1:
+    description: VTEP_Interface
+    vxlan:
+      source_interface: Dps1
+      udp_port: 4789

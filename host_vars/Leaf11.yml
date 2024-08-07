@@ -47,3 +47,5 @@ router_bgp:
   address_family_ipv4:
     networks: 
       - prefix: 192.168.0.31/32
+    redistribute_routes:
+      - source_protocol: connected

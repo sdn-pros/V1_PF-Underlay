@@ -181,6 +181,7 @@ router bgp 65002
    !
    address-family ipv4
       network 192.168.0.75/32
+      redistribute connected
    !
    vrf default
       neighbor 192.51.75.1 peer group REGION1

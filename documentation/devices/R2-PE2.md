@@ -194,4 +194,5 @@ router bgp 65202
    !
    address-family ipv4
       network 192.168.0.25/32
+      redistribute connected
 ```

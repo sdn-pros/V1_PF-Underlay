@@ -485,7 +485,7 @@ router bgp 65001
    router bgp 65001
      address-family ipv4
        no neighbor Region1-UNDERLAY-PEERS activate
-     
+       redistribute connected
      vrf VRF_A
        neighbor Region1-UNDERLAY-PEERS peer group
        neighbor Region1-UNDERLAY-PEERS remote-as 65101
@@ -497,6 +497,7 @@ router bgp 65001
        address-family ipv4
          neighbor Region1-UNDERLAY-PEERS activate
          network 192.168.101.21/32
+         redistribute connected
 ```
 
 ## BFD

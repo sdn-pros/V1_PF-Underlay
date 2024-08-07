@@ -8,6 +8,7 @@
 - [Interfaces](#interfaces)
   - [Ethernet Interfaces](#ethernet-interfaces)
   - [Loopback Interfaces](#loopback-interfaces)
+  - [VXLAN Interface](#vxlan-interface)
 - [Routing](#routing)
   - [IP Routing](#ip-routing)
   - [IPv6 Routing](#ipv6-routing)
@@ -100,6 +101,25 @@ interface Loopback0
    ip address 192.168.0.23/32
 ```
 
+### VXLAN Interface
+
+#### VXLAN Interface Summary
+
+| Setting | Value |
+| ------- | ----- |
+| Source Interface | Dps1 |
+| UDP port | 4789 |
+
+#### VXLAN Interface Device Configuration
+
+```eos
+!
+interface Vxlan1
+   description VTEP_Interface
+   vxlan source-interface Dps1
+   vxlan udp-port 4789
+```
+
 ## Routing
 
 ### IP Routing
@@ -157,6 +177,7 @@ router bgp 65223
    address-family ipv4
       network 172.16.23.0/24
       network 192.168.0.23/32
+      redistribute connected
 ```
 
 ## VRF Instances

@@ -64,10 +64,11 @@ router_bgp:
       remote_as: '65101'
     - ip_address: 192.52.82.1
       remote_as: '65101'
-  eos_cli: "router bgp 65001\n  address-family ipv4\n    no neighbor Region1-UNDERLAY-PEERS activate\n\n  vrf VRF_A\n    neighbor Region1-UNDERLAY-PEERS
-    peer group\n    neighbor Region1-UNDERLAY-PEERS remote-as 65101\n    neighbor 192.51.82.1 peer group Region1-UNDERLAY-PEERS\n    neighbor
-    192.51.82.1 description RR1-Underlay-Peer\n    neighbor 192.52.82.1 peer group Region1-UNDERLAY-PEERS\n    neighbor 192.52.82.1
-    description RR2-Underlay-Peer\n  \n    address-family ipv4\n      neighbor Region1-UNDERLAY-PEERS activate\n      network 192.168.101.22/32"
+  eos_cli: "router bgp 65001\n  address-family ipv4\n    no neighbor Region1-UNDERLAY-PEERS activate\n    redistribute connected\n  vrf
+    VRF_A\n    neighbor Region1-UNDERLAY-PEERS peer group\n    neighbor Region1-UNDERLAY-PEERS remote-as 65101\n    neighbor 192.51.82.1
+    peer group Region1-UNDERLAY-PEERS\n    neighbor 192.51.82.1 description RR1-Underlay-Peer\n    neighbor 192.52.82.1 peer group Region1-UNDERLAY-PEERS\n
+    \   neighbor 192.52.82.1 description RR2-Underlay-Peer\n  \n    address-family ipv4\n      neighbor Region1-UNDERLAY-PEERS activate\n
+    \     network 192.168.101.22/32\n      redistribute connected"
 static_routes:
 - vrf: MGMT
   destination_address_prefix: 0.0.0.0/0
