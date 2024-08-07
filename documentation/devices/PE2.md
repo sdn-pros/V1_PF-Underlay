@@ -127,8 +127,8 @@ vlan internal order ascending range 1006 1199
 | Ethernet1 | P2P_LINK_TO_PE1_Ethernet1 | routed | - | 192.168.102.9/31 | default | 1500 | False | - | - |
 | Ethernet2 | P2P_LINK_TO_P1_Ethernet3 | routed | - | 192.168.102.4/31 | default | 1500 | False | - | - |
 | Ethernet3 | P2P_LINK_TO_P2_Ethernet3 | routed | - | 192.168.102.6/31 | default | 1500 | False | - | - |
-| Ethernet4 | REGION1 | routed | - | 192.51.82.2/24 | VRF_A | - | False | - | - |
-| Ethernet5 | REGION1 | routed | - | 192.52.82.2/24 | VRF_A | - | False | - | - |
+| Ethernet4 | REGION1 | routed | - | 192.51.82.2/24 | default | - | False | - | - |
+| Ethernet5 | REGION1 | routed | - | 192.52.82.2/24 | default | - | False | - | - |
 | Ethernet6 | P2P_LINK_TO_RR5_Ethernet7 | routed | - | 192.168.102.14/31 | default | 1500 | False | - | - |
 | Ethernet8 | P2P_LINK_TO_RR6_Ethernet13 | routed | - | 192.168.102.16/31 | default | 1500 | False | - | - |
 
@@ -189,14 +189,12 @@ interface Ethernet4
    description REGION1
    no shutdown
    no switchport
-   vrf VRF_A
    ip address 192.51.82.2/24
 !
 interface Ethernet5
    description REGION1
    no shutdown
    no switchport
-   vrf VRF_A
    ip address 192.52.82.2/24
 !
 interface Ethernet6
@@ -293,7 +291,6 @@ ip virtual-router mac-address 02:1c:73:00:dc:00
 | --- | --------------- |
 | default | True |
 | MGMT | True |
-| VRF_A | True |
 
 #### IP Routing Device Configuration
 
@@ -301,7 +298,6 @@ ip virtual-router mac-address 02:1c:73:00:dc:00
 !
 ip routing
 ip routing vrf MGMT
-ip routing vrf VRF_A
 ```
 
 ### IPv6 Routing
@@ -312,7 +308,6 @@ ip routing vrf VRF_A
 | --- | --------------- |
 | default | False |
 | MGMT | false |
-| VRF_A | false |
 
 ### Static Routes
 
@@ -417,8 +412,8 @@ ASN Notation: asplain
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
 | 192.168.101.35 | Inherited from peer group MPLS-OVERLAY-PEERS | default | - | Inherited from peer group MPLS-OVERLAY-PEERS | Inherited from peer group MPLS-OVERLAY-PEERS | - | Inherited from peer group MPLS-OVERLAY-PEERS | - | - | - | - |
 | 192.168.101.36 | Inherited from peer group MPLS-OVERLAY-PEERS | default | - | Inherited from peer group MPLS-OVERLAY-PEERS | Inherited from peer group MPLS-OVERLAY-PEERS | - | Inherited from peer group MPLS-OVERLAY-PEERS | - | - | - | - |
-| 192.51.82.1 | 65101 | VRF_A | - | - | - | - | - | - | - | - | - |
-| 192.52.82.1 | 65101 | VRF_A | - | - | - | - | - | - | - | - | - |
+| 192.51.82.1 | 65101 | default | - | - | - | - | - | - | - | - | - |
+| 192.52.82.1 | 65101 | default | - | - | - | - | - | - | - | - | - |
 
 #### Router BGP EVPN Address Family
 
@@ -439,7 +434,7 @@ ASN Notation: asplain
 
 | VRF | Route-Distinguisher | Redistribute |
 | --- | ------------------- | ------------ |
-| VRF_A | 192.168.101.22:19 | connected |
+| default | 192.168.101.22:101 | - |
 
 #### Router BGP Device Configuration
 
@@ -469,14 +464,12 @@ router bgp 65001
       neighbor MPLS-OVERLAY-PEERS activate
       neighbor default encapsulation mpls next-hop-self source-interface Loopback0
    !
-   vrf VRF_A
-      rd 192.168.101.22:19
-      route-target import vpn-ipv4 65001:19
-      route-target export vpn-ipv4 65001:19
-      router-id 192.168.101.22
+   vrf default
+      rd 192.168.101.22:101
+      route-target import vpn-ipv4 65001:101
+      route-target export vpn-ipv4 65001:101
       neighbor 192.51.82.1 remote-as 65101
       neighbor 192.52.82.1 remote-as 65101
-      redistribute connected
       !
       address-family ipv4
          neighbor 192.51.82.1 activate
@@ -485,15 +478,13 @@ router bgp 65001
    router bgp 65001
      address-family ipv4
        no neighbor Region1-UNDERLAY-PEERS activate
-       redistribute connected
-     vrf VRF_A
        neighbor Region1-UNDERLAY-PEERS peer group
        neighbor Region1-UNDERLAY-PEERS remote-as 65101
        neighbor 192.51.82.1 peer group Region1-UNDERLAY-PEERS
        neighbor 192.51.82.1 description RR1-Underlay-Peer
        neighbor 192.52.82.1 peer group Region1-UNDERLAY-PEERS
        neighbor 192.52.82.1 description RR2-Underlay-Peer
-     
+       
        address-family ipv4
          neighbor Region1-UNDERLAY-PEERS activate
          network 192.168.101.22/32
@@ -571,13 +562,10 @@ mpls ip
 | VRF Name | IP Routing |
 | -------- | ---------- |
 | MGMT | enabled |
-| VRF_A | enabled |
 
 ### VRF Instances Device Configuration
 
 ```eos
 !
 vrf instance MGMT
-!
-vrf instance VRF_A
 ```

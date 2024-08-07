@@ -127,8 +127,8 @@ vlan internal order ascending range 1006 1199
 | Ethernet1 | P2P_LINK_TO_PE4_Ethernet1 | routed | - | 192.168.102.44/31 | default | 1500 | False | - | - |
 | Ethernet2 | P2P_LINK_TO_P3_Ethernet2 | routed | - | 192.168.102.37/31 | default | 1500 | False | - | - |
 | Ethernet3 | P2P_LINK_TO_P4_Ethernet2 | routed | - | 192.168.102.41/31 | default | 1500 | False | - | - |
-| Ethernet4 | REGION2 | routed | - | 192.53.83.2/24 | VRF_A | - | False | - | - |
-| Ethernet5 | REGION2 | routed | - | 192.54.83.2/24 | VRF_A | - | False | - | - |
+| Ethernet4 | REGION2 | routed | - | 192.53.83.2/24 | default | - | False | - | - |
+| Ethernet5 | REGION2 | routed | - | 192.54.83.2/24 | default | - | False | - | - |
 | Ethernet6 | P2P_LINK_TO_RR6_Ethernet6 | routed | - | 192.168.102.48/31 | default | 1500 | False | - | - |
 | Ethernet8 | P2P_LINK_TO_RR5_Ethernet10 | routed | - | 192.168.102.46/31 | default | 1500 | False | - | - |
 
@@ -189,14 +189,12 @@ interface Ethernet4
    description REGION2
    no shutdown
    no switchport
-   vrf VRF_A
    ip address 192.53.83.2/24
 !
 interface Ethernet5
    description REGION2
    no shutdown
    no switchport
-   vrf VRF_A
    ip address 192.54.83.2/24
 !
 interface Ethernet6
@@ -293,7 +291,6 @@ ip virtual-router mac-address 02:1c:73:00:dc:00
 | --- | --------------- |
 | default | True |
 | MGMT | True |
-| VRF_A | True |
 
 #### IP Routing Device Configuration
 
@@ -301,7 +298,6 @@ ip virtual-router mac-address 02:1c:73:00:dc:00
 !
 ip routing
 ip routing vrf MGMT
-ip routing vrf VRF_A
 ```
 
 ### IPv6 Routing
@@ -312,7 +308,6 @@ ip routing vrf VRF_A
 | --- | --------------- |
 | default | False |
 | MGMT | false |
-| VRF_A | false |
 
 ### Static Routes
 
@@ -417,8 +412,8 @@ ASN Notation: asplain
 | -------- | --------- | --- | -------- | -------------- | -------------- | ---------- | --- | --------------------- | ---------------------- | ------- | ------------ |
 | 192.168.101.35 | Inherited from peer group MPLS-OVERLAY-PEERS | default | - | Inherited from peer group MPLS-OVERLAY-PEERS | Inherited from peer group MPLS-OVERLAY-PEERS | - | Inherited from peer group MPLS-OVERLAY-PEERS | - | - | - | - |
 | 192.168.101.36 | Inherited from peer group MPLS-OVERLAY-PEERS | default | - | Inherited from peer group MPLS-OVERLAY-PEERS | Inherited from peer group MPLS-OVERLAY-PEERS | - | Inherited from peer group MPLS-OVERLAY-PEERS | - | - | - | - |
-| 192.53.83.1 | 65201 | VRF_A | - | - | - | - | - | - | - | - | - |
-| 192.54.83.1 | 65201 | VRF_A | - | - | - | - | - | - | - | - | - |
+| 192.53.83.1 | 65201 | default | - | - | - | - | - | - | - | - | - |
+| 192.54.83.1 | 65201 | default | - | - | - | - | - | - | - | - | - |
 
 #### Router BGP EVPN Address Family
 
@@ -439,7 +434,7 @@ ASN Notation: asplain
 
 | VRF | Route-Distinguisher | Redistribute |
 | --- | ------------------- | ------------ |
-| VRF_A | 192.168.101.23:19 | connected |
+| default | 192.168.101.23:101 | - |
 
 #### Router BGP Device Configuration
 
@@ -469,14 +464,12 @@ router bgp 65001
       neighbor MPLS-OVERLAY-PEERS activate
       neighbor default encapsulation mpls next-hop-self source-interface Loopback0
    !
-   vrf VRF_A
-      rd 192.168.101.23:19
-      route-target import vpn-ipv4 65001:19
-      route-target export vpn-ipv4 65001:19
-      router-id 192.168.101.23
+   vrf default
+      rd 192.168.101.23:101
+      route-target import vpn-ipv4 65001:101
+      route-target export vpn-ipv4 65001:101
       neighbor 192.53.83.1 remote-as 65201
       neighbor 192.54.83.1 remote-as 65201
-      redistribute connected
       !
       address-family ipv4
          neighbor 192.53.83.1 activate
@@ -485,8 +478,6 @@ router bgp 65001
    router bgp 65001
      address-family ipv4
        no neighbor Region2-UNDERLAY-PEERS activate
-       redistribute connected
-     vrf VRF_A
        neighbor Region2-UNDERLAY-PEERS peer group
        neighbor Region2-UNDERLAY-PEERS remote-as 65201
        neighbor 192.53.83.1 peer group Region2-UNDERLAY-PEERS
@@ -571,13 +562,10 @@ mpls ip
 | VRF Name | IP Routing |
 | -------- | ---------- |
 | MGMT | enabled |
-| VRF_A | enabled |
 
 ### VRF Instances Device Configuration
 
 ```eos
 !
 vrf instance MGMT
-!
-vrf instance VRF_A
 ```

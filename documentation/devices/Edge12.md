@@ -112,6 +112,13 @@ interface Loopback0
 | Source Interface | Dps1 |
 | UDP port | 4789 |
 
+##### VRF to VNI and Multicast Group Mappings
+
+| VRF | VNI | Multicast Group |
+| ---- | --- | --------------- |
+| default | 101 | - |
+| VRF_A | 19 | - |
+
 #### VXLAN Interface Device Configuration
 
 ```eos
@@ -120,6 +127,8 @@ interface Vxlan1
    description VTEP_Interface
    vxlan source-interface Dps1
    vxlan udp-port 4789
+   vxlan vrf default vni 101
+   vxlan vrf VRF_A vni 19
 ```
 
 ## Routing
